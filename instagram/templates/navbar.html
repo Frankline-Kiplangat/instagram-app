@@ -1,0 +1,67 @@
+{% load bootstrap4 %}
+{% load static%}
+{{ form.media }}
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <a class="smooth-scroll" href="/home"> <img src="{% static 'images/logo.png' %}" height="50" width="50" alt=""> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" id="logo-name" class="img-fluid pl-3"></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 mx-auto">
+                        <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
+                            <input class="form-control my-2 my-sm-0 search-input" name="username" type="search" placeholder="Search users" aria-label="Search">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link open-nav" href="{% url 'upload_image' %}" data-toggle="tooltip" data-placement="bottom" title="Upload Image">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link open-nav" href="#" data-toggle="tooltip" data-placement="bottom" title="Discover People">
+                        <i class="far fa-heart"></i>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link open-nav" href="{% url 'profile' username=user %}" data-toggle="tooltip" data-placement="bottom" title="Profile">
+                        <i class="far fa-user show"></i>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link open-nav" data-toggle="modal" data-target="#settings" data-toggle="tooltip" data-placement="bottom" title="Settings">
+                        <i class="fas fa-th"></i>
+                    </a>
+
+                </li>
+
+            </ul>
+        </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <ul class="list-group">
+                <li class="list-group-item text-center"><a href="/accounts/password/change">Change Password</a></li>
+                <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
+                <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

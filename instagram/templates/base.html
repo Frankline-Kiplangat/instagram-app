@@ -1,0 +1,28 @@
+{% load bootstrap3 %}
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  {% if title %}
+  <title>Instagram - {{title}}</title>
+  {% else %}
+  <title>Instagram</title>
+  {% endif %}
+
+  {% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{{ STATIC_URL }} css/styles.css">
+  {% endblock %}
+</head>
+<body>
+  {% include "navbar.html" %}
+
+  {% block content %}
+
+  {% endblock %}
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     {% bootstrap_javascript %}
+    {% endblock %}
+</body>
