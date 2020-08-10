@@ -11,8 +11,7 @@
 
   {% block styles %}
   {% bootstrap_css %}
-  <link rel="stylesheet" href="{{ STATIC_URL }} css/styles.css">
-  {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/basenews.css' %}">  {% endblock %}
 </head>
 <body>
   {% include "navbar.html" %}
