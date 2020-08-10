@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row wide mt-5">
+        <div class="col-md-6">
+            {% if profile_details.photo %}
+            <img src="{{profile_details.photo.cdn_url}}" alt="Profile Photo" width="200" height="200" class="" style="border-radius: 50%">
+            {% else %}
+            <img src="/static/images/avatar.jpg" alt="Avatar" width="300" height="300" class="" style="border-radius: 50%">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <span><h4><strong>{{ profile.username }}</strong></h4></span>
+                </li>
+                {% if profile.username == user.username %}
+                <li class="list-inline-item">
+                    <a href="{% url 'edit_profile' %}" class="btn btn-sm btn-outline-dark"><strong>Edit Profile</strong></a>
+                </li>
+                <li class="list-inline-item">
+                    <a data-toggle="modal" data-target="#settings"><i class="fas fa-ellipsis-h"></i></a>
+                </li>
+                {% else %}
+                {% if profile in people_following %}
+                <li class="list-inline-item">
+                    <a href="#" class="btn btn-sm">Following</a>
+                </li>
+                {% else %}
+                <li class="list-inline-item">
+                    <a href="{% url 'follow' user_id=profile.id %}" class="btn btn-sm">Follow</a>
+                </li>
+                {% endif %}
+                <li class="list-inline-item">
+                    <a data-toggle="modal" data-target="#settings">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <span class="font-weight-bold">{{images|length}} </span> posts
+                </li>
+                <li class="list-inline-item">
+                    <span class="font-weight-bold">{{follow}} </span> followers
+                </li>
+                <li class="list-inline-item">
+                    <span class="font-weight-bold">{{following}} </span> following
+                </li>
+            </ul>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <span>
+                        {% autoescape on %}
+                        {{profile_details.bio| safe}}
+                        {% endautoescape %}
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-5 wide">
+        {% for image in images %}
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div>
+                    <a data-toggle="modal" data-target="#{{image.id}}" class="img-overlay">
+                        <img src="{{image.picture.cdn_url}}" alt="" class="img-fluid">
+                        <div>
+                            <i class="fas fa-heart"><span>{{image.count_likes}}</span></i>
+                            <i class="fas fa-comment"><span>{{image.count_comments}}</span></i>
+                        </div>
+                    </a>
+            </div>
+        </div>
+        {% empty %}
+    </div>
+    {% if profile.username == user.username %}
+    <div class="col-md-12">
+        <h4 class="text-center">You have no posts, click <span><a href="{% url 'upload_image' %}" class="list-inline"><i class="fas fa-cloud-upload-alt"></i></a></span> to upload</h4>
+    </div>
+    {% else %}
+    <div class="col-md-12">
+        <h3 class="text-center">This user has no posts</h3>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% for image in images %}
+    <div class="modal fade dets" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog dets" role="document">
+            <div class="modal-content dets">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="{% url 'like' image_id=image.id%}"><img id="img{{image.id}}" src="{{image.picture.cdn_url}}" class="img-fluid" alt="Image" style="cursor:pointer"></a>
+                        </div>
+                        <div class="col-md-12 mt-4">
+                            <p class="inline">
+                                <strong class="list-inline">{{image.profile.username}}</strong>
+                                {% autoescape on %}
+                                <span class="list-inline">{{image.caption | safe}}</span>
+                                {% endautoescape %}
+                            </p>
+                            {% if image.id in list %}
+                            <i class="far fa-heart likedheart"></i>
+                            {% else %}
+                            <i class="far fa-heart"></i>
+                            {% endif %}
+                            <span>
+                                <i class="far fa-comment"></i>
+                            </span>
+                            <p>{{image.count_likes}} likes</p>
+                            <p class="text-muted">Comments</p>
+                            <hr>
+                            <div>
+                                {% for comment in comments %}
+                                {% if comment.image_id == image.id %}
+                                <div class="list-inline">
+                                    <p><strong>{{comment.user.username}}</strong></p>
+                                    <p>{{comment.comment}}</p>
+                                </div>
+                                {% else %}
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            
+                            <p class="text-muted">Add a comment</p>
+                            <form action="{% url 'comment' image_id=image.id %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                <input type="hidden" name="next" value="/">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
