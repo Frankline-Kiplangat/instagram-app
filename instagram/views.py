@@ -120,3 +120,15 @@ def edit_profile(request):
     return render(request, 'edit_profile.html', {'form':form, 'profile_details':profile_details})
 
 
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+    if 'username' in request.GET and request.GET["username"]:
+        search_term = request.GET.get("username")
+        searched_users = User.objects.filter(username__icontains = search_term)
+        message = f"{search_term}"
+        profile_pic = User.objects.all()
+        return render(request, 'search.html', {'message':message, 'users':searched_users, 'profile_pic':profile_pic})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html', {'message':message})
+
