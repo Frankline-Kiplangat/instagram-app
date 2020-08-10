@@ -150,5 +150,18 @@ def upload_image(request):
                 else:
                     form = ImageForm()
     
-    return render(request, 'upload.html', {'form':form})
+    return render(request, 'upload_photo.html', {'form':form})
 
+
+def follow(request, user_id):
+    other_user = User.objects.get(id = user_id)
+    follow = Follow.objects.add_follower(request.user, other_user)
+
+    return redirect('index')
+
+
+def unfollow(request, user_id):
+    other_user = User.objects.get(id = user_id)
+    follow = Follow.objects.remove_follower(request.user, other_user)
+
+    return redirect('index')
