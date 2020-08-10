@@ -132,3 +132,23 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html', {'message':message})
 
+
+@login_required(login_url='/accounts/login/')
+def upload_image(request):
+    profile = Profile.objects.all()
+    form = ImageForm()
+    for profile in profile:
+        if profile.user.id == request.user.id:
+            if request.method == 'POST':
+                form = ImageForm(request.POST, request.FILES)
+                if form.is_valid():
+                    upload = form.save(commit=False)
+                    upload.profile = request.user
+                    upload.profile_det = profile
+                    upload.save()
+                    return redirect('profile', username=request.user)
+                else:
+                    form = ImageForm()
+    
+    return render(request, 'upload.html', {'form':form})
+
