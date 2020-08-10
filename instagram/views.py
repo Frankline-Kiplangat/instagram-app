@@ -57,3 +57,19 @@ def timeline(request):
     title = 'Home'
     return render(request, 'index.html', {'title':title, 'images':images, 'profile_pic':profile_pic, 'following': following, 'form':form, 'comments':comments, 'profiles':profiles, 'likes':likes, 'list':mylist})
 
+@login_required(login_url='/accounts/login/')
+def comment(request, image_id):
+    if request.method == 'POST':
+        image = get_object_or_404(Image, pk = image_id)
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.image = image
+            comment.save()
+            return redirect('index')
+    else:
+        form = CommentForm()
+
+    title = 'Home'
+    return render(request, 'index.html', {'title':title})
