@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from pyuploadcare.dj.models import ImageField,
+from pyuploadcare.dj.models import ImageField
 
 # Create your models here. 
 class Profile(models.Model):
