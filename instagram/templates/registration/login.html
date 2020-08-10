@@ -1,0 +1,33 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+            {% if form.errors %}
+            <p>Password or username is incorrect</p>
+            {% endif %}
+            <div class="section">
+                <div class="logo mb-5 mt-3">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt="" class="img-fluid">
+                </div>
+                <div class="form-section" id="login">
+                    <form action="/accounts/login/" method="POST">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-sm login" value="Log In">
+                        </div>
+                        <input type="hidden" name="next" value="/">
+                    </form>
+                </div>
+                <p class="text-center"><a href="#">Forgot password?</a></p>
+            </div>
+            <div class="section">
+                <p class="text-center mt-2">Don't have an account?<a href="/signup/"> Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

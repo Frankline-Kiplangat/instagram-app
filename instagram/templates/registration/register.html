@@ -1,0 +1,38 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="frame"></div>
+            <img src="/static/images/ig.png" alt="Handset Images">
+        </div>
+        <div class="col-md-5">
+            {% if form.errors %}
+                <p>Some Information May Be Incorrect</p>
+            {% endif %}
+            <div class="signup-fields">
+                <div class="section mt-5">
+                    <div class="logo mb-3 mt-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt="" class="img-fluid">
+                    </div>
+                    <div class="form-section">
+                        <h4 class="text-center intro">Sign up to see photos and videos from your friends.</h4>
+                        <form method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary btn-sm login" value="Sign up">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="section">
+                    <p class="text-center mt-2">Have an account? <a href="/accounts/login/">Log In</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
