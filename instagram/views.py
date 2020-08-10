@@ -98,3 +98,25 @@ def profile(request, username):
     return render(request, 'profile.html', {'title':title, 'comments':comments, 'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'list':mylist, 'people_following':people_following, 'form':form})
 
 
+@login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    title = 'Edit Profile'
+    profile = User.objects.get(username=request.user)
+    try:
+        profile_details = Profile.get_by_id(profile.id)
+    except:
+        profile_details = Profile.filter_by_id(profile.id)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            edit = form.save(commit=False)
+            edit.user = request.user
+            edit.save()
+            return redirect('profile', username=request.user)
+    else:
+        form = ProfileForm()
+
+    return render(request, 'edit_profile.html', {'form':form, 'profile_details':profile_details})
+
+
