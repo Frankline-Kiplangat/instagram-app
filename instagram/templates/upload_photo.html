@@ -1,0 +1,23 @@
+{% extends 'base.html ' %}
+{% load bootstrap3 %}
+{% load static %}
+{{ form.media }}
+
+{% block content %}
+{{ block.super }}
+
+<div class="container-fluid">
+    <div class = "row">
+        <div class="col-md-8 mx-auto mt-5">
+            <div class="form-section" id="upload_photo">
+                {{message}}
+                <form action="{% url 'upload_photo'%}" method="POST">
+                    {% csrf_token %}
+                    {% bootstrap_form form%}
+                    <input type="submit" class="btn btn-primary" value="upload">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
