@@ -37,6 +37,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+UPLOADCARE = {
+    'pub_key': '1234',
+    'secret': '12345'
+}
+
 
 # Application definition
 
@@ -50,6 +55,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'bootstrap3',
+    'tinymce',
+    'friendship',
+    'pyuploadcare.dj',
 
 ]
 
@@ -91,7 +99,7 @@ WSGI_APPLICATION = 'instalike.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'instagram',
         'USER': 'moringa',
         'PASSWORD': '1234',

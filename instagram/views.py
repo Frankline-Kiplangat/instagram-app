@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
-from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
@@ -183,3 +182,9 @@ def is_liked(request):
     mylist = [i.image_id for i in liked_images]
     print(mylist)
     return HttpResponse(liked_images)
+
+
+@login_required(login_url='/accounts/login/')
+def home(request):
+    title = 'Home'
+    return render(request, 'home.html', {'title':title})
