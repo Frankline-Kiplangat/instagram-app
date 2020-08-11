@@ -1,32 +1,33 @@
 {% extends 'registration/base.html' %}
-{% load bootstrap3 %}
+{% load bootstrap4 %}
 
 {% block content %}
-<div class="container">
-    <div class="row mt-5">
-        <div class="col-md-4 mx-auto">
+<div class="container "><br><br>
+    <div class="row sign-up">
+    <div class="col-md-2"></div>
+        <div class="col-md-4">
             {% if form.errors %}
-            <p>Password or username is incorrect</p>
+            <p class="small">Password or Username is incorrect</p>
             {% endif %}
             <div class="section">
-                <div class="logo mb-5 mt-3">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt="" class="img-fluid">
-                </div>
-                <div class="form-section" id="login">
+                <h1 style='color:#8a3ab9'>Instagram</h1>
+                <div class="form-section">
                     <form action="/accounts/login/" method="POST">
                         {% csrf_token %}
                         {% bootstrap_form form %}
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary btn-sm login" value="Log In">
+                            <input type="submit" class="btn btn-primary btn-lg" value="Sign In">
                         </div>
-                        <input type="hidden" name="next" value="/">
+                        <input type="hidden" name="next" value="{{next}}">
                     </form>
                 </div>
-                <p class="text-center"><a href="#">Forgot password?</a></p>
             </div>
             <div class="section">
-                <p class="text-center mt-2">Don't have an account?<a href="/signup/"> Sign Up</a></p>
+                <p>Don't have an account? <a href="/accounts/register">Sign-Up</a></p>
             </div>
+        </div>
+          <div class="col-md-6">
+            <img src="https://unsplash.it/1200/768.jpg?image=1033" width="400" height="400" >
         </div>
     </div>
 </div>

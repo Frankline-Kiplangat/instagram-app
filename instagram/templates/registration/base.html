@@ -1,35 +1,38 @@
-{% load bootstrap3 %}
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-
+{% load bootstrap4 %}
+{% load static %}
+<! DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% if title %}
+    <title> {{title}} </title>
+    {% else %}
+    <title>Instagram</title>
+    {% endif %}
 
+    {{ form.media }}
 
-  {%if title%}
-
-  <title>{{title}}</title>
-
-  {%endif%}
-
-  {% block styles %}
-    {% bootstrap_css %}
-  {% endblock %}
-
+    {% block styles %}
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Catamaran' rel='stylesheet'>
+      <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    {% endblock %}
 </head>
-
 <body>
+    {% include "navbar.html" %}
 
-  {% block content %}  {%endblock%}
+    {% block content%}
 
 
-  {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% bootstrap_javascript %}
-  {% endblock %}
+    {% endblock %}
 
+    {% block scripts %}
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        {% bootstrap_javascript %}
+        <script src="{% static 'js/scripts.js'%}"></script>
+    {% endblock %}
 </body>
-
 </html>

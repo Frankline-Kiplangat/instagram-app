@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<br>
+{{form.media}}
+    <div class="container">
+      {% if image.profile_pic %}
+                <img src="{{image.profile_pic.cdn_url}}" class="rounded-circle" style=" width:150px;height:150px;" alt="Profile dp"/>
+                        {{image.profile.username}}</a>
+                {% else %}
+                <img src="https://unsplash.it/1200/768.jpg?image=1008"  class="rounded-circle" style=" width:150px;height:150px;" alt="avatar">
+                 {{image.profile.username}}</a>
+                {% endif %}
+              <ul class="profile-data d-flex">
+                <li class="list-inline-item">
+                    <span class="font-weight-bold">{{images|length}} </span> posts
+                </li>
+                <p class="px-3">0 follower</p>
+                <p>2 following</p>
+              </ul>
+            <ul class="list-inline">
+        <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                {% bootstrap_field field %}
+            {% endfor %}
+            <br>
+            <input type="submit" class="btn btn-outline-info " value="Edit Profile">
+        </form>
+    </div>
+  <hr>
+  <h1 class='text-center' style="color:#8a3ab9;">Profile</h1>
+    <div class="row">
+        <div class="col-md-4">
+            {% if all_images %}
+                <img src="{{image.my_image.cdn_url}}" class="card-img-top" alt="Image"></div>
+                {% else %}
+            <h2 class='text-center' >You have no post yet</h2>
+            <p class='text-center' ><a href= "{% url 'upload_image' %}"> Create your first post {{name}}</a></p>
+        </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

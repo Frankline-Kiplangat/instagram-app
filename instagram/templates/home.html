@@ -1,33 +1,54 @@
 {% extends 'registration/base.html' %}
-{% load bootstrap4 %}
-{% load static %}
+
 
 {% block content %}
 <div class="container">
-    <div class="row mt-5">
-        <div class="col-md-6">
-            <div class="frame">
-                <img src="/static/images/ig.png" alt="Handset Images">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div>
-                <div class="section">
-                    <div class="logo mb-5 mt-3">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" alt="" class="img-fluid" width="300">
-                    </div>
-                    <div class="centre">
-                        {% if user.profile.photo %}
-                        <img src="{{user.profile.photo.cdn_url}}" alt="Profile Photo" width="300" height="300" class="" style="border-radius: 50%">
-                        {% else %}
-                        <img src="/static/images/avatar.jpg" alt="Avatar" width="300" height="300" class="" style="border-radius: 50%">
-                        {% endif %}
-                        <div class="clearfix"></div>
-                        <a href="/home" class="btn btn-sm btn-primary login mt-3">Continue as {{request.user}}?</a>
-                        <p class="text-center mt-2">Not {{request.user}}?<a href="/accounts/login/"> Switch accounts</a></p>
-                    </div>
+    <div class="row">
+        <div class="col-md-10">
+            {% for image in all_images %}
+            <div class="card">
+                <a href="{% url 'showprofile' id=image.profile.id %}">
+                    <img src="{{image.profile_details.profile_pic.cdn_url}}" class="rounded-circle" style="width:10%; height:auto" alt=""/>
+                        {{image.profile.username}}</a>
+                <hr>
+                <div class="card-img-top">
+                    <img src="{{image.pic.cdn_url}}" class="card-img-top" alt="Image"></div>
+                <div class="container">
+                    <ul class="list-inline">
+                    <li class="list-inline-item">
+                        <a href=" {% url 'like' image_id=image.id %}">
+                        <i class="fa fa-heart-o fa-3x" style="color: black" aria-hidden="true"></i></a>
+
+                        <a href=" {% url 'comment' image_id=image.id %}">
+                            <i class="fa fa-comment-o fa-3x" aria-hidden="true" style="color:black;"></i></a>
+                        <hr>
+                    </li>
+                    </ul>
+                    <h5><strong>{{image.profile.username}}</strong> {{image.caption}}</h5>
+
+                    <br>
+                    <p></p>{{likes|length}} likes
+                    <p class=""> {{image.comment.count}} comments </p>
+
+                <div class="card-body ">
+                    {% for comment in comments %}
+                    {% if comment.image_id == image.id%}
+                    <h5><strong>{{comment.user}}</strong> {{comment.comment}}</h5>
+                    <hr>
+
+                    {% endif %}
+                    {% endfor %}
                 </div>
-            </div>
+                </div>
+
+
+                                </div>
+
+            {% empty %}
+            <h2>No images. Follow people to see their images</h2>
+            <p><a href= "{% url 'upload_image' %}">Add Image</a></p>
+
+            {% endfor %}
         </div>
     </div>
 </div>

@@ -1,67 +1,38 @@
-{% load bootstrap3 %}
-{% load static%}
-{{ form.media }}
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg" id="navMain">
     <div class="container">
-        <a class="smooth-scroll" href="/home"> <img src="{% static 'images/logo.png' %}" height="50" width="50" alt=""> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" id="logo-name" class="img-fluid pl-3"></a>
+        <a class="" href="{% url 'home'%}"><i class="fa fa-instagram"style='font-size:30px;color:#8a3ab9;' ></i></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <div class="container-fluid">
+               {% if user.is_authenticated %}
                 <div class="row">
-                    <div class="col-md-4 mx-auto">
-                        <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search_results' %}">
-                            <input class="form-control my-2 my-sm-0 search-input" name="username" type="search" placeholder="Search users" aria-label="Search">
+                    <div class="col-md-12 nav-search">
+                        <form class="form-inline my-2 my-lg-0" role="search" action="{% url 'search' %}">
+                            <input class="form-control my-2 my-sm-0 search-input" name="username" type="search" placeholder="Search " aria-label="Search">
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="container">
-
-            <ul class="navbar-nav ml-auto">
+            {%endif%}
+            {% if user.is_authenticated %}
+                <a class="nav-link open-nav" href="{% url 'upload_image'%}">
+                <i class="fa fa-upload" style="font-size: 30px;color: black"></i></a>
+            {%endif%}
+        <a class="navbar-brand" href="{% url 'messages' %}"><i class="fa fa-paper-plane" style="font-size:30px;color:black;"></i></a>
+        <a class="navbar-brand" href="{% url 'explore' %}"><i class="fa fa-compass" style="font-size:30px;color:black;"></i></a>
+            <ul class="navbar-nav ml-auto" style="list-style: none">
                 <li class="nav-item">
-                    <a class="nav-link open-nav" href="{% url 'upload_image' %}" data-toggle="tooltip" data-placement="bottom" title="Upload Image">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </a>
-
+                    {% if user.is_authenticated %}
+                    <a class="nav-link open-nav" href="{% url 'showprofile' id=user.id %}"><i class="fa fa-user" style="font-size:30px;color:#8a3ab9;"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link open-nav" href="#" data-toggle="tooltip" data-placement="bottom" title="Discover People">
-                        <i class="far fa-heart"></i>
-                    </a>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link open-nav" href="{% url 'profile' username=user %}" data-toggle="tooltip" data-placement="bottom" title="Profile">
-                        <i class="far fa-user show"></i>
-                    </a>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link open-nav" data-toggle="modal" data-target="#settings" data-toggle="tooltip" data-placement="bottom" title="Settings">
-                        <i class="fas fa-th"></i>
-                    </a>
-
-                </li>
-
             </ul>
-        </div>
+            <ul  class="navbar-nav ml-auto" style="list-style: none">
+                <li> <a href="/logout">Logout</a></li>
+            </ul>
+                    {%endif%}
         </div>
     </div>
 </nav>
-
-<div class="modal fade" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <ul class="list-group">
-                <li class="list-group-item text-center"><a href="/accounts/password/change">Change Password</a></li>
-                <li class="list-group-item text-center"><a href="/logout/">Log Out</a></li>
-                <li class="list-group-item text-center"><a data-dismiss="modal">Cancel</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>

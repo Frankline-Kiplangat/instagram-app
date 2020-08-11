@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<div class="container text-center"><br>
+<div class="row">
+<div class="col-md-5">
+        <h2 >Direct <i class="fa fa-edit"></i>
+        <hr>
+        </h2>
+     {% for post in images %}
+        <div>
+         {% if image.profile_pic %}
+                <img src="{{image.profile_pic.cdn_url}}" class="rounded-circle" style=" width:80px;height:80px;" alt="Profile dp"/>
+                        {{image.profile.username}}</a>
+                {% else %}
+                <img src="https://unsplash.it/1200/768.jpg?image=1008"  class="rounded-circle" style=" width:80px;height:80px;" alt="avatar">
+                 {{image.profile.username}}</a>
+                {% endif %}
+            <h2> {{post.profile.user.username}} {{post.user}}</h2>
+            <p><b>{{post.message}}</b> </p>
+            <p>{{post.time_created}}<p>
+        </div>
+<hr>
+    {% endfor %}
+
+    </div>
+     <div class="col-md-7 " >
+      <h1><i class="fa fa-paper-plane"></i></h1><br>
+        <h2>Your messages</h2>
+        <p class='text-muted'>Send private photos and messages to a friend or group.</p>
+          <form action="/your-name/" method="post">
+              {% csrf_token %}
+              {{ messageform| linebreaks}}
+              <button class='btn btn-info' type="submit">Send message</button>
+          </form>
+      </div>
+  </div>
+  </div>
+
+{% endblock content %}
