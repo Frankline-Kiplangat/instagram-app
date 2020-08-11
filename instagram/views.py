@@ -22,14 +22,14 @@ def home(request):
 def explore(request):
     images = Image.objects.all()
     all_profiles = Profile.objects.all()
-    return render(request, 'main/explore.html',{'images': images,'all_profiles' : all_profiles })
+    return render(request, 'explore.html',{'images': images,'all_profiles' : all_profiles })
 
 # Send Direct Message
 @login_required(login_url='/accounts/login/')
 def messages(request):
     images = Image.objects.all()
     messageform = MessageForm()
-    return render(request, 'main/messages.html',{'images': images, 'messageform':messageform})
+    return render(request, 'messages.html',{'images': images, 'messageform':messageform})
 
 # Search for other users
 def search(request):
@@ -53,7 +53,7 @@ def add_image(request):
             return redirect('home')
     else:
         form = ImageForm()
-    return render(request,'image.html',locals())
+    return render(request,'upload_photo.html',locals())
 
 # profile
 @login_required(login_url='/login')

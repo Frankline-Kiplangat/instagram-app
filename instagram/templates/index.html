@@ -11,7 +11,7 @@
                 <img src="{{image.profile_pic.cdn_url}}" class="rounded-circle" style=" width:80px;height:80px;" alt="Profile dp"/>
                         {{image.profile.username}}</a>
                 {% else %}
-                <img src="https://unsplash.it/1200/768.jpg?image=1008"  class="rounded-circle" style=" width:80px;height:80px;" alt="avatar">
+                <img src="/static/images/IMG_2046.jpg"  class="rounded-circle" style=" width:80px;height:80px;" alt="avatar">
                  {{image.profile.username}}</a>
                 {% endif %}
                 <hr>
@@ -24,7 +24,7 @@
                             <i class="fa fa-comment-o fa-2x" aria-hidden="true" style="color:black;"></i> {{image.comment.count}} </a>
                               <i class="fa fa-paper-plane-o fa-2x"></i><a href="/messages/ {{image.message}}">{{image.message}}</a>
                                <a href=" {% url 'like' image_id=image.id %}">
-                        <i class="fa fa-heart-o fa-2x" style="color: black" aria-hidden="true"></i>{{likes|length}} likes</a>
+                        <i class="fa fa-heart-o fa-2x" style="color: red" aria-hidden="true"></i>{{likes|length}} likes</a>
                     </li>
                     </ul>
                     <h5> {{image.caption}}</h5>
@@ -44,9 +44,6 @@
 <br><br>
             {% empty %}<br>
         <div class="jumbotron text-center">
-            <h2 >Hey there! So excited to have you here :)
-            <br>You can create your first new post as well as follow your friends.
-            <br>Lets get you started. </h2><hr>
             <p><a href= "{% url 'upload_image' %}"> Add Image</a></p>
         </div>
             {% endfor %}

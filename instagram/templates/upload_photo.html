@@ -2,9 +2,9 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <form action="{% url 'upload_image' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% bootstrap_form form %}

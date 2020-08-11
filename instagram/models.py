@@ -8,7 +8,7 @@ from friendship.models import Friend,Follow,Block
 # Create your models here.
 
 class Profile(models.Model):
-    profile_pic = models.ImageField()
+    profile_pic = models.ImageField(upload_to='images/')
     bio = models.CharField(max_length=100,blank=True)
     user = models.ForeignKey(User,blank=True, on_delete=models.CASCADE, related_name="profile")
 
@@ -33,9 +33,9 @@ class Profile(models.Model):
 
 
 class Image(models.Model):
-    time_created= models.DateTimeField(default=datetime.now, blank=True)
+    created_date= models.DateTimeField(default=datetime.now, blank=True)
     my_image=ImageField(manual_crop='1080x800', blank=True)
-    message = models.CharField(max_length=80, default='Hey', blank=True)
+    message = models.CharField(max_length=80, default='whats up', blank=True)
     name = models.CharField(max_length=80)
     caption = models.TextField(blank=True)
     profile = models.ForeignKey(User, blank=True,on_delete=models.CASCADE)
