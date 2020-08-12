@@ -72,7 +72,7 @@ def profile(request):
 def display_profile(request, id):
     seekuser=User.objects.filter(id=id).first()
     profile = seekuser.profile
-    profile_details = Profile.get_by_id(id)
+    # profile_details = Profile.get_by_id(id)
     images = Image.get_profile_images(id)
 
     users = User.objects.get(id=id)

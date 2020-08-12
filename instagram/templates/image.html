@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% load bootstrap4 %}
+{% load bootstrap3 %}
 <br>
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <form action="{% url 'upload_image' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% bootstrap_form form %}
@@ -14,4 +14,8 @@
     </div>
 </div>
 {{ form.media }}
+<script>UPLOADCARE_PUBLIC_KEY = "demopublickey";</script>
+<script src="https://ucarecdn.com/libs/widget/3.7.4/uploadcare.full.min.js" charset="utf-8"></script>
+
+<input type="hidden" role="uploadcare-uploader" name="my_file" />
 {% endblock %}

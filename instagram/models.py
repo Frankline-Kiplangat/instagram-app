@@ -43,7 +43,7 @@ class Image(models.Model):
     name = models.CharField(max_length=80)
     caption = models.TextField(blank=True)
     profile = models.ForeignKey(User, blank=True,on_delete=models.CASCADE)
-    profile_details = models.ForeignKey(Profile)
+    # profile_details = models.ForeignKey(Profile)
 
 
     def __str__(self):
