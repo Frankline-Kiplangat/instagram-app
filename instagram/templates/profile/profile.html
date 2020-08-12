@@ -5,7 +5,7 @@
 {{form.media}}
     <div class="container">
       {% if image.profile_pic %}
-                <img src="{{image.profile_pic.cdn_url}}" class="rounded-circle" style=" width:150px;height:150px;" alt="Profile dp"/>
+                <img src="{{image.profile_pic.url}}" class="rounded-circle" style=" width:150px;height:150px;" alt="Profile dp"/>
                         {{image.profile.username}}</a>
                 {% else %}
                 <img src="/static/images/IMG_2046.jpg"  class="rounded-circle" style=" width:150px;height:150px;" alt="avatar">
@@ -33,7 +33,7 @@
     <div class="row">
         <div class="col-md-4">
             {% if all_images %}
-                <img src="{{image.my_image.cdn_url}}" class="card-img-top" alt="Image"></div>
+                <img src="{{image.image.url}}" class="card-img-top" alt="Image"></div>
                 {% else %}
             <h2 class='text-center' >You have no post yet</h2>
             <p class='text-center' ><a href= "{% url 'upload_image' %}"> Create your first post</a></p>

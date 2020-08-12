@@ -10,7 +10,7 @@
      {% for post in images %}
         <div>
          {% if image.profile_pic %}
-                <img src="{{image.profile_pic.cdn_url}}" class="rounded-circle" style=" width:80px;height:80px;" alt="Profile dp"/>
+                <img src="{{image.profile_pic.url}}" class="rounded-circle" style=" width:80px;height:80px;" alt="Profile dp"/>
                         {{image.profile.username}}</a>
                 {% else %}
                 <img src="/static/images/IMG_2046.jpg"  class="rounded-circle" style=" width:80px;height:80px;" alt="avatar">

@@ -7,7 +7,7 @@
             {% for result in results %}
             <div class="row" style="overflow:hidden;-webkit-border-radius:50px; -moz-border-radius:50px; border-radius:100px; width:200px;height:200px;">
                 {% if result.profile_pic %}
-                <img src="{{result.profile_pic.cdn_url}}"  alt="image">
+                <img src="{{result.profile_pic.url}}"  alt="image">
                 {% else %}
                 <img src="/static/images/IMG_2046.jpg" alt="avatar">
                 {% endif %}

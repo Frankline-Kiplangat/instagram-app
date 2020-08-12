@@ -2,13 +2,13 @@ from django.db import models
 from django.utils import timezone
 from datetime import datetime
 from django.contrib.auth.models import User
-from pyuploadcare.dj.models import ImageField
+# from pyuploadcare.dj.models import ImageField
 from friendship.models import Friend,Follow,Block
 
 # Create your models here.
 
 class Profile(models.Model):
-    profile_pic = models.ImageField()
+    profile_pic = models.ImageField(upload_to='images/')
     bio = models.CharField(max_length=100,blank=True)
     user = models.ForeignKey(User,blank=True, on_delete=models.CASCADE, related_name="profile")
 
@@ -38,8 +38,8 @@ class Profile(models.Model):
  #Image
 class Image(models.Model):
     time_created= models.DateTimeField(default=datetime.now, blank=True)
-    my_image=ImageField(manual_crop='1080x800', blank=True)
-    message = models.CharField(max_length=80, default='Hey', blank=True)
+    image=models.ImageField(upload_to='images/')
+    message = models.CharField(max_length=80, blank=True)
     name = models.CharField(max_length=80)
     caption = models.TextField(blank=True)
     profile = models.ForeignKey(User, blank=True,on_delete=models.CASCADE)
