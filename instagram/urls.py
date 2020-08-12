@@ -15,3 +15,4 @@ urlpatterns = [
     url(r'^follow/(?P<user_id>\d+)', views.follow, name='follow'),
 
 ]
+

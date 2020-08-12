@@ -1,9 +1,11 @@
-{% extends 'registration/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container"><br>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-8">
             {% for image in all_images %}
             <div class="card">
                 <a href="{% url 'showprofile' id=image.profile.id %}">
@@ -21,17 +23,19 @@
                     <ul class="list-inline text-black">
                     <li class="list-inline-item">
                         <a href=" {% url 'comment' image_id=image.id %}">
-                            <i class="fa fa-comment-o fa-2x" aria-hidden="true" style="color:black;"></i> {{image.comment.count}} </a>
-                              <i class="fa fa-paper-plane-o fa-2x"></i><a href="/messages/ {{image.message}}">{{image.message}}</a>
-                               <a href=" {% url 'like' image_id=image.id %}">
-                        <i class="fa fa-heart-o fa-2x" style="color: black" aria-hidden="true"></i>{{likes|length}} likes</a>
+                        <a href=" {% url 'like' image_id=image.id %}">
+                        <i class="fa fa-heart fa-2x" style="font-size:30px;color:red" aria-hidden="true"></i>{{likes|length}} likes</a>
+                        <a href=" {% url 'comment' image_id=image.id %}">
+                        <i class="fa fa-comment-o fa-2x" aria-hidden="true" style="color:black;"></i> {{image.comment.count}} </a>
+                        <a href="{% url 'messages' %}">
+                        <i class="fa fa-paper-plane-o fa-2x"></i><a href="/messages/ {{image.message}}">{{image.message}}</a>
                     </li>
                     </ul>
                     <h5> {{image.caption}}</h5>
                 <div class="card-body ">
                     {% for comment in comments %}
                     {% if comment.image_id == image.id%}
-                    <h5> <b> {{comment.comment_title}}</b>: {{comment.comment}}</h5>
+                    <h5> <b> {{comment.comment}}</b> {{comment.comment}}</h5>
                     <p>{{image.time_created}}</p>
                     <hr>
                     <p class="text-muted">Add Comment ...</p>
@@ -41,12 +45,9 @@
                 </div>
                 </div>
       </div>
-<br><br>
             {% empty %}<br>
         <div class="jumbotron text-center">
-            <h2 >Hey there! So excited to have you here :)
-            <br>You can create your first new post as well as follow your friends.
-            <br>Lets get you started. </h2><hr>
+
             <p><a href= "{% url 'upload_image' %}"> Add Image</a></p>
         </div>
             {% endfor %}

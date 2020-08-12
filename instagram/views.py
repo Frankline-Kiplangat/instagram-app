@@ -17,21 +17,19 @@ def home(request):
     profile = Profile.objects.all()
     return render(request,'index.html',locals())
 
-# Explore
 @login_required(login_url='/login')
 def explore(request):
     images = Image.objects.all()
     all_profiles = Profile.objects.all()
-    return render(request, 'main/explore.html',{'images': images,'all_profiles' : all_profiles })
+    return render(request, 'explore.html',{'images': images,'all_profiles' : all_profiles })
 
-# Message
+# Direct Message
 @login_required(login_url='/accounts/login/')
 def messages(request):
     images = Image.objects.all()
     messageform = MessageForm()
-    return render(request, 'main/messages.html',{'images': images, 'messageform':messageform})
+    return render(request, 'messages.html',{'images': images, 'messageform':messageform})
 
-# Search
 def search(request):
     profiles = User.objects.all()
     if 'username' in request.GET and request.GET['username']:
@@ -40,7 +38,7 @@ def search(request):
         return render(request,'search.html',locals())
     return redirect(home)
 
-# Add image
+# Upload image
 @login_required(login_url='accounts/login/')
 def add_image(request):
     current_user = request.user
@@ -55,7 +53,6 @@ def add_image(request):
         form = ImageForm()
     return render(request,'image.html',locals())
 
-# profile
 @login_required(login_url='/login')
 def profile(request):
     current_user = request.user

@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<br>
+
 <div class="container text-center"><br>
 <div class="row">
-<div class="col-md-5">
-        <h2 >Direct <i class="fa fa-edit"></i>
-        <hr>
+<div class="col-md-4">
+        <h1>Direct Message
         </h2>
      {% for post in images %}
         <div>
@@ -17,23 +16,25 @@
                 <img src="/static/images/IMG_2046.jpg"  class="rounded-circle" style=" width:80px;height:80px;" alt="avatar">
                  {{image.profile.username}}</a>
                 {% endif %}
-            <h2> {{post.profile.user.username}} {{post.user}}</h2>
+            <h3> {{post.profile.user.username}} {{post.user}}</h3>
             <p><b>{{post.message}}</b> </p>
-            <p>{{post.time_created}}<p>
+            <p>{{post.created_date}}<p>
         </div>
 <hr>
     {% endfor %}
 
     </div>
-     <div class="col-md-7 " >
-      <h1><i class="fa fa-paper-plane"></i></h1><br>
-        <h2>Your messages</h2>
+     <div class="col-md-6" >
         <p class='text-muted'>Send private photos and messages to a friend or group.</p>
-          <form action="/your-name/" method="post">
-              {% csrf_token %}
-              {{ messageform| linebreaks}}
-              <button class='btn btn-info' type="submit">Send message</button>
-          </form>
+      <form id="message-form">
+        <div class="form-group form-inline">
+          <input type="text" class="form-control" placeholder = "To..." name="input1" id="input1" size="25" required>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" rows="7" id="comment" placeholder = "Write message..."></textarea>
+        </div>
+        <button type="submit" id="button" class="btn btn-primary col-md-2">SEND</button>
+      </form>
       </div>
   </div>
   </div>
