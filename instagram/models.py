@@ -34,8 +34,8 @@ class Profile(models.Model):
 
 class Image(models.Model):
     created_date= models.DateTimeField(default=datetime.now, blank=True)
-    my_image=ImageField(manual_crop='1080x800', blank=True)
-    message = models.CharField(max_length=80, default='whats up', blank=True)
+    my_image=ImageField(blank=True)
+    message = models.CharField(max_length=80,blank=True)
     name = models.CharField(max_length=80)
     caption = models.TextField(blank=True)
     profile = models.ForeignKey(User, blank=True,on_delete=models.CASCADE)
