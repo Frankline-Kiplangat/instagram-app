@@ -2,13 +2,10 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div class="container "><br><br>
-    <div class="row sign-up">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-6">
-        <img src="/static/images/ig.png" width="500" height="600" >
-    </div>
+<div class="container"><br>
+  <div class="row">
+    <!-- Empty div -->
+    <div class="col-md-4"></div>
     <div class="col-md-4">
       {% if form.errors %}
         <p> Some Information Might be Incorrect </p>
@@ -36,6 +33,7 @@
       </div>
 
     </div>
+    <!-- empty div -->
     <div class="col-md-4"></div>
   </div>
 </div>

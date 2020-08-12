@@ -22,16 +22,16 @@ def home(request):
 def explore(request):
     images = Image.objects.all()
     all_profiles = Profile.objects.all()
-    return render(request, 'explore.html',{'images': images,'all_profiles' : all_profiles })
+    return render(request, 'main/explore.html',{'images': images,'all_profiles' : all_profiles })
 
-# Send Direct Message
+# Message
 @login_required(login_url='/accounts/login/')
 def messages(request):
     images = Image.objects.all()
     messageform = MessageForm()
-    return render(request, 'messages.html',{'images': images, 'messageform':messageform})
+    return render(request, 'main/messages.html',{'images': images, 'messageform':messageform})
 
-# Search for other users
+# Search
 def search(request):
     profiles = User.objects.all()
     if 'username' in request.GET and request.GET['username']:
@@ -40,7 +40,7 @@ def search(request):
         return render(request,'search.html',locals())
     return redirect(home)
 
-# Upload image
+# Add image
 @login_required(login_url='accounts/login/')
 def add_image(request):
     current_user = request.user
@@ -53,7 +53,7 @@ def add_image(request):
             return redirect('home')
     else:
         form = ImageForm()
-    return render(request,'upload_photo.html',locals())
+    return render(request,'image.html',locals())
 
 # profile
 @login_required(login_url='/login')
@@ -70,7 +70,7 @@ def profile(request):
 
     return render(request, 'profile/new_user.html', locals())
 
-# searched profiles displayed
+# all profiles displayed
 @login_required(login_url='/accounts/login/')
 def display_profile(request, id):
     seekuser=User.objects.filter(id=id).first()
@@ -86,7 +86,7 @@ def display_profile(request, id):
 
     return render(request,'profile/profile.html',locals())
 
-# Comment on a picture
+# Comment
 def comment(request,image_id):
     current_user=request.user
     image = Image.objects.get(id=image_id)

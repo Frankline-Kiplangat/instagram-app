@@ -4,11 +4,7 @@
 {% block content %}
 <div class="container "><br><br>
     <div class="row sign-up">
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-6">
-        <img src="/static/images/ig.png" width="400" height="400" >
-    </div>
+    <div class="col-md-2"></div>
         <div class="col-md-4">
             {% if form.errors %}
             <p class="small">Password or Username is incorrect</p>
@@ -30,7 +26,9 @@
                 <p>Don't have an account? <a href="/accounts/register">Sign-Up</a></p>
             </div>
         </div>
-
+          <div class="col-md-6">
+            <img src="/static/images/ig.png" width="400" height="400" >
+        </div>
     </div>
 </div>
 {% endblock %}

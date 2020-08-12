@@ -1,37 +1,30 @@
-{%extends 'base.html'%}
-{% load static%}
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
-
-{{block.super}}
-
-<div class="container mt-5">
-        {% if users%}
-        <h2>Found  {{users | length}} of searched term {{message}}</h2>
-        <hr>
-        <div class="contain col-sm-6 user">
-            {% for user in users %}
-            <div class="users">
-                {% if user.profile.photo %}
-                <img src="{{user.profile.photo.cdn_url}}" alt="Profile Photo" width="80" height="80" class=""
-                style="border-radius: 50%">
+<div class="container ">
+    <div class="row"><br>
+        {% if results %}
+            {% for result in results %}
+            <div class="row" style="overflow:hidden;-webkit-border-radius:50px; -moz-border-radius:50px; border-radius:100px; width:200px;height:200px;">
+                {% if result.profile_pic %}
+                <img src="{{result.profile_pic.cdn_url}}"  alt="image">
                 {% else %}
-                <img src="/static/images/avatar.jpg" alt="Avatar"  width="80" height="80" class=""
-                style="border-radius: 50%">
-                {% endif %}
-                <a href="{% url 'profile' username=user.username %}" class="link">
-                <span class="list-inline username ml-2">{{user.username}}</span>
-                </a>
-                {% if user in following%}
-                    <a href="{%url 'unfollow' user_id=user.id %}" class="btn btn-sm btn-primary ml-3">Following</a>
-                {% else %}
-                    <a href="{%url 'follow' user_id=user.id %}" class="btn btn-sm btn-primary ml-3">Follow</a>
+                <img src="/static/images/IMG_2046.jpg" alt="avatar">
                 {% endif %}
             </div>
+
+                <ul style="list-style: none">   <br><br> <br><br>
+                  <a class="btn btn-primary" href="">View Profile</a></li>
+               </li>
+
+                </ul>
             {% endfor %}
-        </div>
         {% else %}
-        <h2>Found 0 users for the search term {{message}}</h2>
+            <div class="col-md-12 text-center">
+                <h4>Not found </h4>
+            </div>
         {% endif %}
+    </div>
 </div>
 
 {% endblock %}

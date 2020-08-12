@@ -17,7 +17,7 @@ class ImageForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ['picture', 'comment']
+        exclude = ['picture', 'comment_title']
 
 
 class MessageForm(forms.Form):
