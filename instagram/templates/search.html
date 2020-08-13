@@ -14,14 +14,14 @@
             </div>
 
                 <ul style="list-style: none">   <br><br> <br><br>
-                  <a class="btn btn-primary" href="">View Profile</a></li>
+                  <a class="btn btn-primary" href="{% url 'showprofile' id=user.id %}">View Profile</a></li>
                </li>
 
                 </ul>
             {% endfor %}
         {% else %}
-            <div class="col-md-12 text-center">
-                <h4>Not found </h4>
+            <div class="col-md-10 text-center">
+                <h4>Not found</h4>
             </div>
         {% endif %}
     </div>

@@ -9,7 +9,7 @@
     {% for post in images %}
         <div class="col-md-4"><br>
             <h2 class="card-header"> {{post.profile.user.username}} {{post.user}}</h2>
-            <img class="img-fluid" src="{{ post.image.url }}" alt="image">
+            <img class="img-fluid" src="{{ post.image.url }}" alt="image" style="width:500px; height:350px; border-radius:50%;">
             <div class='text-center'><br>
             <button class='btn btn-primary'>Follow {{user.username}}</button>
             </div>

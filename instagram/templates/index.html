@@ -3,7 +3,6 @@
 {% block content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="container"><br>
@@ -20,7 +19,7 @@
                  {{image.profile.username}}</a>
                 {% endif %}
                 <div class="card-img-top">
-                    <img src="{{image.image.url}}"  style="width: 400px; height: 350px;" alt="Image"></div>
+                    <img src="{{image.image.url}}"  style="width: 500px; height: 350px;" alt="Image"></div>
                 <div class="container"><br>
                     <ul class="list-inline text-black">
                     <li class="list-inline-item">
@@ -31,7 +30,7 @@
                         <i class="fa fa-comment-o fa-2x" aria-hidden="true" style="color:black;"></i> {{image.comment.count}} </a>
                         <a href="{% url 'messages' %}">
                         <i class="fa fa-paper-plane-o fa-2x"></i><a href="/messages/ {{image.message}}"></a>
-                        <i class="glyphicon glyphicon-bookmark" style="float: right; font-size:30px;"></i><a class="text-center" href="#"></a>
+                        <i class="fa fa-bookmark" style="float: right; font-size:30px;"></i><a class="text-center" href="#"></a>
                     </li>
                     </ul>
                     <h3> {{image.caption}}</h3>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+ <link href="../lib/css/emoji.css" rel="stylesheet">
 <div class="container text-center"><br>
 <div class="row">
 <div class="col-md-4">
@@ -31,7 +31,8 @@
           <input type="text" class="form-control" placeholder = "To..." name="input1" id="input1" size="25" required>
         </div>
         <div class="form-group">
-          <textarea class="form-control" rows="7" id="comment" placeholder = "Write message..."></textarea>
+        <p class="lead emoji-picker-container">
+          <textarea class="form-control" rows="7" id="comment" placeholder = "Write message..." data-emojiable="true" maxlength="10"></textarea>
         </div>
         <button type="submit" id="button" class="btn btn-primary col-md-2">SEND</button>
       </form>
