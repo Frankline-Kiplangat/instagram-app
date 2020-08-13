@@ -17,15 +17,15 @@
                  {{image.profile.username}}</a>
                 {% endif %}
             <h3> {{post.profile.user.username}} {{post.user}}</h3>
-            <p><b>{{post.message}}</b> </p>
+            <p><b>{{user.username}}</b> </p>
             <p>{{post.created_date}}<p>
         </div>
 <hr>
     {% endfor %}
 
     </div>
-     <div class="col-md-6" >
-        <p class='text-muted'>Send private photos and messages to a friend or group.</p>
+     <div class="col-md-8" >
+      <p class='text-muted'>Send private photos and messages to a friend or group.</p>
       <form id="message-form">
         <div class="form-group form-inline">
           <input type="text" class="form-control" placeholder = "To..." name="input1" id="input1" size="25" required>

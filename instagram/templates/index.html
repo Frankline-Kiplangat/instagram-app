@@ -3,6 +3,9 @@
 {% block content %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="container"><br>
     <div class="row">
         <div class="col-md-8">
@@ -10,15 +13,14 @@
             <div class="card">
                 <a href="{% url 'showprofile' id=image.profile.id %}">
                  {% if image.profile_pic %}
-                <img src="{{image.profile_pic.url}}" class="rounded-circle" style=" width:80px;height:80px;" alt="Profile dp"/>
+                <img src="{{image.profile_pic.url}}"  style=" width:100px;height:100px; border-radius:50%;">
                         {{image.profile.username}}</a>
                 {% else %}
                 <img src="/static/images/IMG_2046.jpg"  class="rounded-circle" style=" width:80px;height:80px;" alt="avatar">
                  {{image.profile.username}}</a>
                 {% endif %}
-                <hr>
                 <div class="card-img-top">
-                    <img src="{{image.image.url}}" class="card-img-top" alt="Image"></div>
+                    <img src="{{image.image.url}}"  style="width: 400px; height: 350px;" alt="Image"></div>
                 <div class="container"><br>
                     <ul class="list-inline text-black">
                     <li class="list-inline-item">
@@ -28,17 +30,18 @@
                         <a href=" {% url 'comment' image_id=image.id %}">
                         <i class="fa fa-comment-o fa-2x" aria-hidden="true" style="color:black;"></i> {{image.comment.count}} </a>
                         <a href="{% url 'messages' %}">
-                        <i class="fa fa-paper-plane-o fa-2x"></i><a href="/messages/ {{image.message}}">{{image.message}}</a>
+                        <i class="fa fa-paper-plane-o fa-2x"></i><a href="/messages/ {{image.message}}"></a>
+                        <i class="glyphicon glyphicon-bookmark" style="float: right; font-size:30px;"></i><a class="text-center" href="#"></a>
                     </li>
                     </ul>
-                    <h5> {{image.caption}}</h5>
+                    <h3> {{image.caption}}</h3>
                 <div class="card-body ">
                     {% for comment in comments %}
                     {% if comment.image_id == image.id%}
-                    <h5> <b> {{comment.comment}}</b> {{comment.comment}}</h5>
+                    <h3> <b> {{user.username}} :</b> {{comment.comment}}</h3>
                     <p>{{image.time_created}}</p>
                     <hr>
-                    <p class="text-muted">Add Comment ...</p>
+                    <p class="text-muted">Add Comment...</p>
                 <br>
                     {% endif %}
                     {% endfor %}

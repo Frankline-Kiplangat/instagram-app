@@ -11,7 +11,7 @@
             <h2 class="card-header"> {{post.profile.user.username}} {{post.user}}</h2>
             <img class="img-fluid" src="{{ post.image.url }}" alt="image">
             <div class='text-center'><br>
-            <button class='btn btn-info' id="btn1">Follow</button>
+            <button class='btn btn-primary'>Follow {{user.username}}</button>
             </div>
         </div>
     {% endfor %}
@@ -21,7 +21,7 @@
 <script>
 $(document).ready(function(){
   $("#btn1").click(function(){
-    $("h2").append(" <br> You are now following.");
+    $("h2").append(" <br> You are now following {{user.username}}");
   });
 });
 </script>

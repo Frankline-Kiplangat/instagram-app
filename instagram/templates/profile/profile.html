@@ -3,8 +3,12 @@
 {% block content %}
 <br>
 {{form.media}}
-    <div class="container">
+    <div class="container-fluid">
+    <div class="col-md-2">
+      <h1 class='text-center' style="float: center;">Profile</h1>
+
       {% if image.profile_pic %}
+      
                 <img src="{{image.profile_pic.url}}" class="rounded-circle" style=" width:150px;height:150px;" alt="Profile dp"/>
                         {{image.profile.username}}</a>
                 {% else %}
@@ -28,8 +32,7 @@
             <input type="submit" class="btn btn-outline-info " value="Edit Profile">
         </form>
     </div>
-  <hr>
-  <h1 class='text-center' style="color:#8a3ab9;">PROFILE</h1>
+  
     <div class="row">
         <div class="col-md-4">
             {% if all_images %}
