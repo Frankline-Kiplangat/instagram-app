@@ -28,7 +28,7 @@ SECRET_KEY = '4jtu$wh0lsukab11czjes8n+$!c6++z#n@^--_xlydk&tcbi9@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 UPLOADCARE = {
     'pub_key': '1234',
